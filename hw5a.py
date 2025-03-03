@@ -58,17 +58,17 @@ def plotMoody(plotPoint=False, pt=(0,0), marker='o', markersize=10, markeredgeco
     :return: just shows the plot, nothing returned
     """
     # Step 1: create logspace arrays for ranges of Re
-    ReValsCB = np.logspace(np.log10(4000), np.log10(1e8), 100)  # JES MISSING CODE for turbulent flow (Re 4000 to 10^8)
+    ReValsCB = np.logspace(np.log10(4000), np.log10(1e8), 100)   # turbulent flow (Re 4000 to 10^8)
     ReValsL = np.logspace(np.log10(600.0), np.log10(2000.0), 20)  # Laminar flow (Re 600 to 2000)
-    ReValsTrans = np.logspace(np.log10(2000), np.log10(4000), 50)  # JES MISSING CODE for transition flow (Re 2000 to 4000)
+    ReValsTrans = np.logspace(np.log10(2000), np.log10(4000), 50)  # transition flow (Re 2000 to 4000)
 
     # Step 2: create array for range of relative roughnesses
     rrVals = np.array([0, 1E-6, 5E-6, 1E-5, 5E-5, 1E-4, 2E-4, 4E-4, 6E-4, 8E-4, 1E-3, 2E-3, 4E-3, 6E-3,
                        8E-3, 1.5E-2, 2E-2, 3E-2, 4E-2, 5E-2])
 
     # Step 2: calculate the friction factor in the laminar range
-    ffLam = np.array([64/Re for Re in ReValsL])  # JES MISSING CODE: Compute f = 64/Re for all Re in laminar range
-    ffTrans = np.array([ff(Re, 0) for Re in ReValsTrans])  # JES MISSING CODE: Compute transition region friction factor
+    ffLam = np.array([64/Re for Re in ReValsL])  # Compute f = 64/Re for all Re in laminar range
+    ffTrans = np.array([ff(Re, 0) for Re in ReValsTrans])  # Compute transition region friction factor
 
     # Step 3: calculate friction factor values for each rr at each Re for turbulent range
     ffCB = np.array([[ff(Re, relRough, CBEQN=True) for Re in ReValsCB] for relRough in rrVals])  #for relRough in rrVals])
